@@ -1,3 +1,4 @@
+import shuffle from "../functions/arrays";
 import AnswerModel from "./answer";
 
 export default class QuestionModel {
@@ -7,7 +8,7 @@ export default class QuestionModel {
   #right: boolean;
   // #answered: boolean
   
-  constructor(id: number, untterance: string, answers: AnswerModel[], right: boolean) {
+  constructor(id: number, untterance: string, answers: AnswerModel[], right = false) {
     this.#id = id;
     this.#utterance = untterance;
     this.#answers = answers;
@@ -37,5 +38,19 @@ export default class QuestionModel {
       }
     }
     return false
+  }
+
+  toConvertObject() {
+    return {
+      id: this.#id,
+      utterance: this.#utterance,
+      answers: this.#answers.map((question) => question.toConvertObject()),
+      right: this.#right
+    }
+  }
+
+  scrambleAnswers(): QuestionModel {
+    let scrambledAnswers = shuffle(this.#answers)
+    return new QuestionModel(this.#id, this.#utterance, scrambledAnswers, this.#right)
   }
 }
