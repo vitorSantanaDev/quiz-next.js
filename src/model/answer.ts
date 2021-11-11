@@ -29,6 +29,10 @@ export default class AnswerModel {
     return this.#revealed
   }
 
+  toReveal() {
+    return new AnswerModel(this.#value, this.#certain, true)
+  }
+
   toConvertObject() {
     return {
       value: this.#value,

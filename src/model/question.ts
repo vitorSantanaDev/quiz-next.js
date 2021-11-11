@@ -44,13 +44,24 @@ export default class QuestionModel {
     return {
       id: this.#id,
       utterance: this.#utterance,
-      answers: this.#answers.map((question) => question.toConvertObject()),
-      right: this.#right
+      answered: this.answered,
+      right: this.#right,
+      answers: this.#answers.map((question) => question.toConvertObject())
     }
   }
 
   scrambleAnswers(): QuestionModel {
     let scrambledAnswers = shuffle(this.#answers)
     return new QuestionModel(this.#id, this.#utterance, scrambledAnswers, this.#right)
+  }
+
+  replyWith(index: number): QuestionModel {
+    const gotItRight = this.#answers[index]?.certain
+    const answers = this.#answers.map((answer, i) => {
+      const selectedAnswer = index === i
+      const mustReveal = selectedAnswer || answer.certain
+      return selectedAnswer ? answer.toReveal() : answer
+    })
+    return new QuestionModel(this.id, this.untterance, answers, gotItRight)
   }
 }
