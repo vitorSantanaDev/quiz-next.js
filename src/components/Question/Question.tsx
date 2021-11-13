@@ -5,7 +5,16 @@ import Response from "../Response/Response";
 
 interface Props {
   value: QuestionModel;
+  answerProvided: (index: number) => void ;
 }
+
+const letters = [
+  {value: "A", cor: "#F2c866"},
+  {value: "B", cor: "#F266BA"},
+  {value: "C", cor: "#85D4F2"},
+  {value: "D", cor: "#BCE596"},
+  {value: "E", cor: "#4ffdef"},
+]
 
 export default function Question(props: Props) {
   const question = props.value;
@@ -17,8 +26,9 @@ export default function Question(props: Props) {
           key={index}
           value={answerd}
           index={index}
-          letter="A"
-          letterBkackground="#F2c866"
+          letter={letters[index].value}
+          letterBkackground={letters[index].cor}
+          answerProvided={props.answerProvided}
         />
       );
     });
