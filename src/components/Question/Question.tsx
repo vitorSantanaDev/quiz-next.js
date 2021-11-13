@@ -2,19 +2,22 @@ import QuestionModel from "../../model/question";
 import Statement from "../Statement/Statement";
 import { QuestionWrapper } from "./styles";
 import Response from "../Response/Response";
+import Timer from "../Timer/Timer";
 
 interface Props {
   value: QuestionModel;
-  answerProvided: (index: number) => void ;
+  responseTime?: number;
+  answerProvided: (index: number) => void;
+  timeIsOver: () => void;
 }
 
 const letters = [
-  {value: "A", cor: "#F2c866"},
-  {value: "B", cor: "#F266BA"},
-  {value: "C", cor: "#85D4F2"},
-  {value: "D", cor: "#BCE596"},
-  {value: "E", cor: "#4ffdef"},
-]
+  { value: "A", cor: "#F2c866" },
+  { value: "B", cor: "#F266BA" },
+  { value: "C", cor: "#85D4F2" },
+  { value: "D", cor: "#BCE596" },
+  { value: "E", cor: "#4ffdef" },
+];
 
 export default function Question(props: Props) {
   const question = props.value;
@@ -45,6 +48,10 @@ export default function Question(props: Props) {
     >
       <QuestionWrapper>
         <Statement text={question.untterance} />
+        <Timer
+          duration={props.responseTime ? props.responseTime : 10}
+          timeIsOver={props.timeIsOver}
+        />
         {renderResponse()}
       </QuestionWrapper>
     </div>
