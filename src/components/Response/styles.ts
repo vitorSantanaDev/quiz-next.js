@@ -49,4 +49,27 @@ export const BackContent = styled.div`
   height: 100%;
   width: 100%;
   position: absolute;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    flex: 1;
+  }
+
+  .certain {
+    background-color: #2BAA6D;
+  }
+
+  .wrong {
+    background-color: #E44A4c;
+  }
+
+  .certain .value, .wrong .value {
+    font-size: 1.5rem;
+    color: #FFF;
+    font-weight: bold;
+  }
 `;
