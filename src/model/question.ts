@@ -60,7 +60,7 @@ export default class QuestionModel {
     const answers = this.#answers.map((answer, i) => {
       const selectedAnswer = index === i
       const mustReveal = selectedAnswer || answer.certain
-      return selectedAnswer ? answer.toReveal() : answer
+      return mustReveal ? answer.toReveal() : answer
     })
     return new QuestionModel(this.id, this.untterance, answers, gotItRight)
   }
