@@ -3,6 +3,7 @@ import Statement from "../Statement/Statement";
 import { QuestionWrapper } from "./styles";
 import Response from "../Response/Response";
 import Timer from "../Timer/Timer";
+import Button from "../Button/Button";
 
 interface Props {
   value: QuestionModel;
@@ -42,6 +43,7 @@ export default function Question(props: Props) {
       style={{
         height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -54,6 +56,7 @@ export default function Question(props: Props) {
         />
         {renderResponse()}
       </QuestionWrapper>
+      <Button href="/result">Proxíma pagína</Button>
     </div>
   );
 }
