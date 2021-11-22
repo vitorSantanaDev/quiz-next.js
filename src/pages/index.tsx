@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Question from "../components/Question/Question";
+import Quiz from "../components/Quiz/Quiz";
 import AnswerModel from "../model/answer";
 import QuestionModel from "../model/question";
 
@@ -13,11 +13,17 @@ const questionMock = new QuestionModel(1, "Melhor cor ?", [
 
 export default function Home() {
   const [question, setQuestion] = useState(questionMock);
-  const questionRef = useRef<QuestionModel>()
+  const questionRef = useRef<QuestionModel>();
+
+  function questionResponse(question: QuestionModel) {
+    console.log(question);
+  }
+
+  function goNextStep() {}
 
   useEffect(() => {
-    questionRef.current = question
-  }, [question])
+    questionRef.current = question;
+  }, [question]);
 
   function answerProvided(index: number) {
     setQuestion(question.replyWith(index));
@@ -31,11 +37,11 @@ export default function Home() {
 
   return (
     <>
-      <Question
-        responseTime={20}
-        timeIsOver={timeIsOver}
-        answerProvided={answerProvided}
-        value={question}
+      <Quiz
+        question={question}
+        lastQuestion={true}
+        questionResponse={questionResponse}
+        goNext={goNextStep}
       />
     </>
   );

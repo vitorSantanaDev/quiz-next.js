@@ -7,6 +7,12 @@ export const ButtonElement = styled.button `
   font-weight: 200;
   font-size: 1.2rem;
   border: none;
-  padding: 8px 24px;
-  margin-top: 36px;
+  padding: 16px 32px;
+  margin-top: 0px;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `
